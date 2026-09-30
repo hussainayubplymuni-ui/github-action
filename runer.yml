@@ -1,0 +1,28 @@
+name: Self Hosted Runner Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show machine
+        run: |
+          echo "Running on:"
+          hostname
+          echo "User:"
+          whoami
+          echo "OS:"
+          uname -a
+
+      - name: Create file
+        run: |
+          echo "This file was created by GitHub Actions" > result.txt
+          cat result.txt
